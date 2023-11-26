@@ -83,9 +83,9 @@ test {
 
 dependencies {
     implementation 'org.apache.commons:commons-lang3:3.14.0'
-    implementation 'org.junit.jupiter:junit-jupiter-api:5.10.0'
-    implementation 'org.junit.jupiter:junit-jupiter-params:5.10.0'
-    runtimeOnly    'org.junit.jupiter:junit-jupiter-engine:5.10.0'
+    implementation 'org.junit.jupiter:junit-jupiter-api:5.10.1'
+    implementation 'org.junit.jupiter:junit-jupiter-params:5.10.1'
+    runtimeOnly    'org.junit.jupiter:junit-jupiter-engine:5.10.1'
     compileOnly    'org.slf4j:slf4j-api:2.0.9'
     compileOnly    'org.slf4j:slf4j-log4j12:2.0.9'
     compileOnly    'org.slf4j:slf4j-jdk14:2.0.9'
@@ -93,9 +93,9 @@ dependencies {
 
 
 
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.10.0'
-    testImplementation 'org.junit.jupiter:junit-jupiter-params:5.10.0'
-    testRuntimeOnly    'org.junit.jupiter:junit-jupiter-engine:5.10.0'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.10.1'
+    testImplementation 'org.junit.jupiter:junit-jupiter-params:5.10.1'
+    testRuntimeOnly    'org.junit.jupiter:junit-jupiter-engine:5.10.1'
 //    testImplementation 'org.slf4j:slf4j-api:2.0.9'
 //    testImplementation 'org.slf4j:slf4j-log4j12:2.0.9'
 //    testImplementation 'org.slf4j:slf4j-jdk14:2.0.9'
