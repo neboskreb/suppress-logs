@@ -55,9 +55,9 @@ Using `@SuppressLogs` annotation you can silence the logging for the duration of
 Maven 
 ```xml
 <dependency>
-    <groupId>nl.jqno.equalsverifier</groupId>
-    <artifactId>equalsverifier</artifactId>
-    <version>3.15.3</version>
+    <groupId>io.github.neboskreb</groupId>
+    <artifactId>suppress-logs</artifactId>
+    <version>1.0.6</version>
     <scope>test</scope>
 </dependency>
 ```
@@ -65,7 +65,7 @@ Maven
 Gradle
 ```groovy
 dependencies {
-    testImplementation 'ch.qos.logback:logback-classic:1.4.11'
+    testImplementation 'io.github.neboskreb:suppress-logs:1.0.6'
 }
 ```
 
