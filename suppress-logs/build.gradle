@@ -1,0 +1,103 @@
+plugins {
+    id 'java-library'
+    id 'maven-publish'
+    id 'signing'
+}
+
+group = 'io.github.neboskreb'
+version = '1.0.6-SNAPSHOT'
+
+publishing {
+    repositories {
+        maven {
+            name "GitHub"
+            url = uri("https://maven.pkg.github.com/neboskreb/suppress-logs")
+            credentials {
+                username = project.findProperty("github_packages_user") ?: System.getenv("PACKAGES_USERNAME")
+                password = project.findProperty("github_packages_token") ?: System.getenv("PACKAGES_TOKEN")
+            }
+        }
+        maven {
+            name "MavenCentral"
+            if (version.endsWith('SNAPSHOT')) {
+                url = uri("https://s01.oss.sonatype.org/content/repositories/snapshots/")
+            } else  {
+                url = uri("https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/")
+            }
+            credentials {
+                username = project.findProperty("mavenCentralUser") ?: System.getenv("MAVEN_USERNAME")
+                password = project.findProperty("mavenCentralPass") ?: System.getenv("MAVEN_PASSWORD")
+            }
+        }
+    }
+
+    publications {
+        mavenJava(MavenPublication) {
+            artifactId = 'suppress-logs'
+
+            from components.java
+
+            pom {
+                name = 'Red and Blue extension'
+                description = 'JUnit 5 extension for easy injection of Red and Blue instances'
+                url = 'https://github.com/neboskreb/suppress-logs'
+                licenses {
+                    license {
+                        name = 'The Apache License, Version 2.0'
+                        url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+                developers {
+                    developer {
+                        id = 'JBM'
+                        name = 'John Y. Pazekha'
+                        email = 'neboskreb@narod.ru'
+                    }
+                }
+                scm {
+                    connection = 'scm:git:git@github.com:neboskreb/suppress-logs.git'
+                    developerConnection = 'scm:git:ssh://github.com:neboskreb/suppress-logs.git'
+                    url = 'https://github.com/neboskreb/suppress-logs'
+                }
+            }
+        }
+
+    }
+}
+
+
+
+signing {
+    sign publishing.publications.mavenJava
+}
+
+java {
+    withSourcesJar()
+    sourceCompatibility = 11
+    targetCompatibility = 11
+}
+
+test {
+    useJUnitPlatform()
+}
+
+dependencies {
+    implementation 'org.apache.commons:commons-lang3:3.14.0'
+    implementation 'org.junit.jupiter:junit-jupiter-api:5.10.0'
+    implementation 'org.junit.jupiter:junit-jupiter-params:5.10.0'
+    runtimeOnly    'org.junit.jupiter:junit-jupiter-engine:5.10.0'
+    compileOnly    'org.slf4j:slf4j-api:2.0.9'
+    compileOnly    'org.slf4j:slf4j-log4j12:2.0.9'
+    compileOnly    'org.slf4j:slf4j-jdk14:2.0.9'
+    compileOnly    'ch.qos.logback:logback-classic:1.4.11'
+
+
+
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.10.0'
+    testImplementation 'org.junit.jupiter:junit-jupiter-params:5.10.0'
+    testRuntimeOnly    'org.junit.jupiter:junit-jupiter-engine:5.10.0'
+//    testImplementation 'org.slf4j:slf4j-api:2.0.9'
+//    testImplementation 'org.slf4j:slf4j-log4j12:2.0.9'
+//    testImplementation 'org.slf4j:slf4j-jdk14:2.0.9'
+    testImplementation 'ch.qos.logback:logback-classic:1.4.11'
+}
