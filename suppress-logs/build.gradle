@@ -89,7 +89,7 @@ dependencies {
     compileOnly    'org.slf4j:slf4j-api:2.0.9'
     compileOnly    'org.slf4j:slf4j-log4j12:2.0.9'
     compileOnly    'org.slf4j:slf4j-jdk14:2.0.9'
-    compileOnly    'ch.qos.logback:logback-classic:1.4.11'
+    compileOnly    'ch.qos.logback:logback-classic:1.4.14'
 
 
 
@@ -99,5 +99,5 @@ dependencies {
 //    testImplementation 'org.slf4j:slf4j-api:2.0.9'
 //    testImplementation 'org.slf4j:slf4j-log4j12:2.0.9'
 //    testImplementation 'org.slf4j:slf4j-jdk14:2.0.9'
-    testImplementation 'ch.qos.logback:logback-classic:1.4.11'
+    testImplementation 'ch.qos.logback:logback-classic:1.4.14'
 }
