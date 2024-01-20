@@ -73,6 +73,7 @@ signing {
 
 java {
     withSourcesJar()
+    withJavadocJar()
     sourceCompatibility = 11
     targetCompatibility = 11
 }
