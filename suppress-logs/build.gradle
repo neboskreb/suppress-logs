@@ -38,8 +38,8 @@ publishing {
             from components.java
 
             pom {
-                name = 'Red and Blue extension'
-                description = 'JUnit 5 extension for easy injection of Red and Blue instances'
+                name = 'Suppress Logs extension'
+                description = 'JUnit 5 extension for easy suppression of unwanted error logs'
                 url = 'https://github.com/neboskreb/suppress-logs'
                 licenses {
                     license {
