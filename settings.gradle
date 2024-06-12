@@ -16,4 +16,8 @@ dependencyResolutionManagement {
 rootProject.name = "SUPPRESS LOGS"
 include ':suppress-logs'
 include ':integration-fixture'
+include ':integration:nop'
+include ':integration:jdk14'
+include ':integration:log4j'
+include ':integration:logback'
 include ':examples'

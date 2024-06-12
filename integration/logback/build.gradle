@@ -1,0 +1,18 @@
+plugins {
+    id 'java-library'
+}
+
+java {
+    sourceCompatibility = 11
+    targetCompatibility = 11
+}
+
+test {
+    useJUnitPlatform()
+}
+
+dependencies {
+    testImplementation project(':integration-fixture')
+    testImplementation testFixtures(project(':integration-fixture'))
+    testImplementation 'ch.qos.logback:logback-classic:1.4.11'
+}
