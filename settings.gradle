@@ -15,4 +15,5 @@ dependencyResolutionManagement {
 }
 rootProject.name = "SUPPRESS LOGS"
 include ':suppress-logs'
+include ':integration-fixture'
 include ':examples'
