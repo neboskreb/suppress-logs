@@ -14,5 +14,5 @@ test {
 dependencies {
     testImplementation project(':integration-fixture')
     testImplementation testFixtures(project(':integration-fixture'))
-    testImplementation 'org.slf4j:slf4j-jdk14:2.0.9'
+    testImplementation 'org.slf4j:slf4j-jdk14:2.0.13'
 }
