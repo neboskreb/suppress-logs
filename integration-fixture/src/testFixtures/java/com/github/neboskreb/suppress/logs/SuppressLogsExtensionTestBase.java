@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
 @ExtendWith(SuppressLogsExtension.class)
-public class SuppressLogsExtensionTest {
+public class SuppressLogsExtensionTestBase {
 
     private final BeanWithLogger beanWithLogger = new BeanWithLogger();
 
