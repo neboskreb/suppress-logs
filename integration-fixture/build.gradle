@@ -19,4 +19,5 @@ dependencies {
     testFixturesApi 'org.slf4j:slf4j-api:2.0.13'
     testFixturesApi 'org.junit.jupiter:junit-jupiter-api:5.10.2'
     testFixturesApi 'org.junit.jupiter:junit-jupiter-params:5.10.2'
+    testFixturesApi 'org.assertj:assertj-core:3.26.0'
 }
