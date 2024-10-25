@@ -14,5 +14,5 @@ test {
 dependencies {
     testImplementation project(':integration-fixture')
     testImplementation testFixtures(project(':integration-fixture'))
-    testImplementation 'ch.qos.logback:logback-classic:1.5.10'
+    testImplementation 'ch.qos.logback:logback-classic:1.5.12'
 }
