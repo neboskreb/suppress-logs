@@ -17,7 +17,8 @@ dependencies {
     testFixturesApi (project(":suppress-logs"))
 
     testFixturesApi 'org.slf4j:slf4j-api:2.0.16'
-    testFixturesApi 'org.junit.jupiter:junit-jupiter-api:5.12.0'
-    testFixturesApi 'org.junit.jupiter:junit-jupiter-params:5.12.0'
+    testFixturesApi platform('org.junit:junit-bom:5.12.0')
+    testFixturesApi 'org.junit.jupiter:junit-jupiter'
+    testFixturesRuntimeOnly 'org.junit.platform:junit-platform-launcher'
     testFixturesApi 'org.assertj:assertj-core:3.27.3'
 }
