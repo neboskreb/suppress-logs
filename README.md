@@ -1,5 +1,5 @@
 # Suppress Logs extension
-Extension for JUnit 5 and SLF4J for temporary suppressing the error logging when error is expected, e.g. in negative tests.
+Extension for JUnit 5/6 and SLF4J for temporary suppressing the error logging when error is expected, e.g. in negative tests.
 
 # What is the problem
 Printing logs in tests is considered harmful - it creates much noise which can hide an actual warning. You only interested in logs of those tests which failed, all the happy ones must keep silent. Normally, this is achieved by adding `logback-test.yaml` or similar configuration file to your test resource folder, in which you set the log level to ERROR or WARNING, thus shutting up all the debug and info printing.
@@ -57,7 +57,7 @@ Maven
 <dependency>
     <groupId>io.github.neboskreb</groupId>
     <artifactId>suppress-logs</artifactId>
-    <version>1.0.6</version>
+    <version>1.2</version>
     <scope>test</scope>
 </dependency>
 ```
@@ -65,7 +65,7 @@ Maven
 Gradle
 ```groovy
 dependencies {
-    testImplementation 'io.github.neboskreb:suppress-logs:1.0.6'
+    testImplementation 'io.github.neboskreb:suppress-logs:1.2'
 }
 ```
 
