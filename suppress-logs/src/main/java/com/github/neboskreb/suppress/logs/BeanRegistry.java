@@ -1,11 +1,10 @@
 package com.github.neboskreb.suppress.logs;
 
-import static org.junit.jupiter.params.shadow.com.univocity.parsers.annotations.helpers.AnnotationHelper.getAllFields;
+import static org.apache.commons.lang3.reflect.FieldUtils.getAllFields;
 
 import com.github.neboskreb.suppress.logs.annotation.SuppressLogs;
 
 import org.junit.jupiter.api.extension.ParameterResolutionException;
-import org.junit.jupiter.params.shadow.com.univocity.parsers.common.beans.PropertyWrapper;
 import org.junit.platform.commons.support.ReflectionSupport;
 
 import java.lang.reflect.Field;
@@ -47,15 +46,15 @@ class BeanRegistry {
     }
 
     private void extractFields() {
-        Map<Field, PropertyWrapper> fields = getAllFields(clazz);
+        Field[] fields = getAllFields(clazz);
 
         fieldsByName = new HashMap<>();
         fieldsByType = new HashMap<>();
-        for (Field field : fields.keySet()) {
+        for (Field field : fields) {
             fieldsByName.put(field.getName(), field);
             fieldsByType.put(field.getType(), field);
         }
-        for (Field field : fields.keySet()) {
+        for (Field field : fields) {
             String name = field.getName();
             fieldsByName.put(name, field);
         }
