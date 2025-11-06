@@ -6,7 +6,7 @@ plugins {
 
 def libraryGroup    = 'io.github.neboskreb'
 def libraryArtifact = 'suppress-logs'
-def libraryVersion  = '1.0.7-SNAPSHOT'
+def libraryVersion  = '1.2.1-SNAPSHOT'
 
 
 final stagingDirectory = layout.buildDirectory.dir('staging-deploy')
