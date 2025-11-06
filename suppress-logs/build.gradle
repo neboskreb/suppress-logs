@@ -1,39 +1,29 @@
 plugins {
     id 'java-library'
     id 'maven-publish'
-    id 'signing'
+    id 'org.jreleaser'
 }
 
-group = 'io.github.neboskreb'
-version = '1.0.7-SNAPSHOT'
+def libraryGroup    = 'io.github.neboskreb'
+def libraryArtifact = 'suppress-logs'
+def libraryVersion  = '1.0.7-SNAPSHOT'
+
+
+final stagingDirectory = layout.buildDirectory.dir('staging-deploy')
 
 publishing {
     repositories {
         maven {
-            name "GitHub"
-            url = uri("https://maven.pkg.github.com/neboskreb/suppress-logs")
-            credentials {
-                username = project.findProperty("github_packages_user") ?: System.getenv("PACKAGES_USERNAME")
-                password = project.findProperty("github_packages_token") ?: System.getenv("PACKAGES_TOKEN")
-            }
-        }
-        maven {
-            name "MavenCentral"
-            if (version.endsWith('SNAPSHOT')) {
-                url = uri("https://s01.oss.sonatype.org/content/repositories/snapshots/")
-            } else  {
-                url = uri("https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/")
-            }
-            credentials {
-                username = project.findProperty("mavenCentralUser") ?: System.getenv("MAVEN_USERNAME")
-                password = project.findProperty("mavenCentralPass") ?: System.getenv("MAVEN_PASSWORD")
-            }
+            name = 'staging'
+            url = stagingDirectory
         }
     }
 
     publications {
         mavenJava(MavenPublication) {
-            artifactId = 'suppress-logs'
+            group = libraryGroup
+            artifactId = libraryArtifact
+            version = libraryVersion
 
             from components.java
 
@@ -65,10 +55,55 @@ publishing {
     }
 }
 
+jreleaser {
+    gitRootSearch = true
+    signing {
+        active = 'RELEASE'
+        armored = true
+        verify = false
 
+        version = libraryVersion
 
-signing {
-    sign publishing.publications.mavenJava
+        secretKey  = getConfiguredValue('signing.key.armored', 'PGP_SIGNING_KEY_ARMORED')
+        passphrase = getConfiguredValue('signing.password',    'PGP_SIGNING_PASSWORD')
+    }
+    deploy {
+        maven {
+            final String staging = stagingDirectory.get().toString()
+
+            github {
+                packages {
+                    active = 'RELEASE'
+                    url = 'https://maven.pkg.github.com/neboskreb/suppress-logs'
+                    stagingRepository(staging)
+
+                    sign = true
+                    applyMavenCentralRules = true
+
+                    username = getConfiguredValue('github_packages_user', 'PACKAGES_USERNAME')
+                    password = getConfiguredValue('github_packages_token', 'PACKAGES_TOKEN')
+                }
+            }
+
+            mavenCentral {
+                sonatype {
+                    active = 'RELEASE'
+                    url = 'https://central.sonatype.com/api/v1/publisher'
+                    stagingRepository(staging)
+
+                    sign = true
+                    applyMavenCentralRules = true
+
+                    username = getConfiguredValue('mavenCentralUser', 'MAVEN_USERNAME')
+                    password = getConfiguredValue('mavenCentralPass', 'MAVEN_PASSWORD')
+                }
+            }
+        }
+    }
+}
+
+tasks.named('jreleaserDeploy') {
+    dependsOn publishMavenJavaPublicationToStagingRepository
 }
 
 java {
@@ -91,4 +126,9 @@ dependencies {
     compileOnly    'org.slf4j:slf4j-log4j12:2.0.17'
     compileOnly    'org.slf4j:slf4j-jdk14:2.0.17'
     compileOnly    'ch.qos.logback:logback-classic:1.5.20'
+}
+
+
+private String getConfiguredValue(String projectProperty, String environmentVariable) {
+    return findProperty(projectProperty) ?: System.getenv(environmentVariable)
 }
