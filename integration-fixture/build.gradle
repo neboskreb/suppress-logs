@@ -20,5 +20,5 @@ dependencies {
     testFixturesApi platform('org.junit:junit-bom:6.0.2')
     testFixturesApi 'org.junit.jupiter:junit-jupiter'
     testFixturesRuntimeOnly 'org.junit.platform:junit-platform-launcher'
-    testFixturesApi 'org.assertj:assertj-core:3.27.6'
+    testFixturesApi 'org.assertj:assertj-core:3.27.7'
 }
