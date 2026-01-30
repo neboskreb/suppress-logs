@@ -125,7 +125,7 @@ dependencies {
     compileOnly    'org.slf4j:slf4j-api:2.0.17'
     compileOnly    'org.slf4j:slf4j-log4j12:2.0.17'
     compileOnly    'org.slf4j:slf4j-jdk14:2.0.17'
-    compileOnly    'ch.qos.logback:logback-classic:1.5.26'
+    compileOnly    'ch.qos.logback:logback-classic:1.5.27'
 }
 
 
